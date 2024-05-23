@@ -7,6 +7,7 @@ import warnings
 
 warnings.filterwarnings('ignore')
 
+
 class Dataset_Custom(Dataset):
     def __init__(self, root_path, flag='train', size=None,
                  features='M', data_path='processed_ali20_c.csv',
@@ -47,14 +48,15 @@ class Dataset_Custom(Dataset):
         cols = list(df_raw.columns)
         # cols.remove(self.target)
         cols.remove('date')
-        df_raw = df_raw[['date'] + cols + [self.target]]
+        df_raw = df_raw[['date'] + cols]
         # print(cols)
         true_train = int(len(df_raw))
         num_train = int(len(df_raw) * 0.7)
         num_test = int(len(df_raw) * 0.2)
         num_vali = len(df_raw) - num_train - num_test
         border1s = [0, num_train - self.seq_len, len(df_raw) - num_test - self.seq_len]
-        border2s = [true_train, num_train + num_vali, len(df_raw)]
+        border2s = [num_train, num_train + num_vali, len(df_raw)]
+        # border2s = [true_train, num_train + num_vali, len(df_raw)]
         border1 = border1s[self.set_type]
         border2 = border2s[self.set_type]
 

@@ -8,10 +8,12 @@ import pandas as pd
 import numpy as np
 
 # 从 CSV 文件中加载数据
-df = pd.read_csv('results/avgmem-ForecastResults.csv')  # 替换为你的 CSV 文件路径
+# df = pd.read_csv('results/avgmem-ForecastResults.csv')  # 替换为你的 CSV 文件路径
+df = pd.read_csv('results/avgcpu-ForecastResults.csv')  # 替换为你的 CSV 文件路径
 
 # 提取实际值和预测值列，并转换为 NumPy 数组
-y_true = df['real'].values
+# y_true = df['Avgmemreal'].values
+y_true = df['Avgcpureal'].values
 y_pred = df['forecast'].values
 
 # 计算均方误差 (MSE)
